@@ -19,20 +19,21 @@ export class TodoService {
     this.todo.next(this.myTodos); // Initialize myTodos for behavior subject
   }
 
-  getId(): number {
-    return this.myTodos.length;
+  getTodo(id: number): Observable<Todo>{
+    const todo = this.myTodos.find(t => t.id === id)!;
+
+    return of(todo);
   }
 
  addTodo(newTodo: Todo): void{
     if(this.myTodos.find(listTodo => newTodo.task === listTodo.task)) { return }
 
     this.myTodos.push(newTodo); // push into array
-
     this.todo.next(this.myTodos); // UPDATE the info about the array
   }
 
   deleteTodo(incomingTodoId: number): void{
-    this.myTodos = this.myTodos.filter(listTodo => incomingTodoId !== listTodo.id)
+    this.myTodos = this.myTodos.filter(listTodo => incomingTodoId !== listTodo.id) //
     this.todo.next(this.myTodos);
 
 

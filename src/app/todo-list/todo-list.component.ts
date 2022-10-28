@@ -10,8 +10,6 @@ import { TodoService } from '../todo.service';
 export class TodoListComponent implements OnInit {
 
   todoes: Todo[] = [];  // Local myTodo array
-  selectedTodo?: Todo;
-  localTodo!: Todo;
 
   constructor(private todoService: TodoService) {
     todoService.todo$.subscribe((savedTodos: Todo[]) => {
@@ -23,18 +21,11 @@ export class TodoListComponent implements OnInit {
     this.getTodoes();
   }
 
-  onSelect(todo: Todo): void {
-    this.selectedTodo = todo;
-  }
-
   getTodoes() {
     this.todoService.getTodoes();
-  }
-
-  
+  }  
 
   add(task: string, id: number): void{
-    
     task = task.trim();
     this.todoService.addTodo({ id, task } as Todo)
   }

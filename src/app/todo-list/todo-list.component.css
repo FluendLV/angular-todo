@@ -88,3 +88,20 @@ button.delete:hover {
   background-color: #525252;
   color: white;
 }
+
+
+button.edit {
+  position: absolute;
+  left: 208px;
+  bottom: 30px;
+  background-color: white;
+  color:  #525252;
+  font-size: 1.1rem;
+  margin: 0;
+  padding: 1px 10px 1px 10px;
+}
+
+button.edit:hover {
+  background-color: #525252;
+  color: white;
+}

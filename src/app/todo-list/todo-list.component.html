@@ -12,9 +12,9 @@
 
 <ul class="todo-active-list">
     <li *ngFor="let todo of todoes">
-        <button>
+        <a routerLink="/todo-editor/{{todo.id}}">
         <span class="task-number">{{ todo.id }}</span> {{ todo.task }}
-    </button>
+        </a>
     <button type="button" class="delete" title="delete task"
      (click)="delete(todo.id)">x</button>
     </li>

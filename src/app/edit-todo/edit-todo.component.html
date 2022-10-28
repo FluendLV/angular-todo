@@ -1,0 +1,5 @@
+<div *ngIf="todo">
+    <label for="todo-update">Edit your todo:</label>
+    <input id="todo-update" [(ngModel)]="todo.task" placeholder="New">
+    <button type="button" class="back" (click)="getBack()">Back</button>
+</div>
