@@ -1,0 +1,21 @@
+<h2>My todo list</h2>
+
+<div>
+    <label for="new-todo">Add new task:</label>
+    <input type="text" id="newTask" [(ngModel)]="newTask.value" placeholder="Add new task" #newTask/>
+    <button type="button" class="add-button" [disabled]="newTask.value == ''" (click)="add(newTask.value, todoes.length+1); newTask.value = ''">
+        Add new task
+    </button>
+
+
+</div>
+
+<ul class="todo-active-list">
+    <li *ngFor="let todo of todoes">
+        <button>
+        <span class="task-number">{{ todo.id }}</span> {{ todo.task }}
+    </button>
+    <button type="button" class="delete" title="delete task"
+     (click)="delete(todo.id)">x</button>
+    </li>
+</ul>
