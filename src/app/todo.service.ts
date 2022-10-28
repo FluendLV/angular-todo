@@ -11,6 +11,8 @@ export class TodoService {
 
   myTodos = TODOES; // Initial data array (can also be empty)
   todo = new BehaviorSubject<any>(null); //Behavior subj [EMPTY] 
+  singleTodo = new BehaviorSubject<any>(null);
+  singleTodo$ = this.singleTodo.asObservable();
   todo$ = this.todo.asObservable(); // Same subject but bet lai varetu pie to subskribēt 
 
   constructor() { }
@@ -19,10 +21,8 @@ export class TodoService {
     this.todo.next(this.myTodos); // Initialize myTodos for behavior subject
   }
 
-  getTodo(id: number): Observable<Todo>{
-    const todo = this.myTodos.find(t => t.id === id)!;
-
-    return of(todo);
+  getTodo(id: number): void{
+    this.singleTodo.next(this.myTodos.find(t => t.id === id)!);
   }
 
  addTodo(newTodo: Todo): void{

@@ -90,18 +90,18 @@ button.delete:hover {
 }
 
 
-button.edit {
+button.done {
   position: absolute;
-  left: 208px;
-  bottom: 30px;
-  background-color: white;
-  color:  #525252;
+  left: 170px;
+  top: 5px;
+  background-color: green;
+  color:  white;
   font-size: 1.1rem;
   margin: 0;
-  padding: 1px 10px 1px 10px;
+  padding: 1px 10px 3px 10px;
 }
 
-button.edit:hover {
+button.done:hover {
   background-color: #525252;
-  color: white;
+  color: green;
 }

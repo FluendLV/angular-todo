@@ -18,8 +18,8 @@ export class EditTodoComponent implements OnInit {
   constructor(private todoService: TodoService,
     private route: ActivatedRoute,
     private location: Location) { 
-      /*this.todoService.todo$.subscribe(
-      (savedTodo: Todo) => this.todo = savedTodo)*/
+      this.todoService.singleTodo$.subscribe(
+      (savedTodo: Todo) => this.todo = savedTodo)
   }
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class EditTodoComponent implements OnInit {
 
   getTodo(): void{
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.todoService.getTodo(id).subscribe(todo => this.todo = todo);
+    this.todoService.getTodo(id);
   }
 
 }
