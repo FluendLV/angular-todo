@@ -13,12 +13,11 @@ import { Location } from '@angular/common';
 export class EditTodoComponent implements OnInit {
 
   todo?: Todo;
-
-
+  
   constructor(private todoService: TodoService,
     private route: ActivatedRoute,
-    private location: Location) { 
-      this.todoService.singleTodo$.subscribe(
+    private location: Location) {
+    this.todoService.singleTodo$.subscribe(
       (savedTodo: Todo) => this.todo = savedTodo)
   }
 
@@ -30,7 +29,7 @@ export class EditTodoComponent implements OnInit {
     this.location.back();
   }
 
-  getTodo(): void{
+  getTodo(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.todoService.getTodo(id);
   }

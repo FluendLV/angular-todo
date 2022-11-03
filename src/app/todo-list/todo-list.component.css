@@ -90,10 +90,10 @@ button.delete:hover {
 }
 
 
-button.done {
+.todo-checkbox {
   position: absolute;
-  left: 170px;
-  top: 5px;
+  right: 150px;
+  top: 10px;
   background-color: green;
   color:  white;
   font-size: 1.1rem;
@@ -105,3 +105,8 @@ button.done:hover {
   background-color: #525252;
   color: green;
 }
+
+.todo-complete {
+  text-decoration: line-through;
+}
+

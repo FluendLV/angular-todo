@@ -10,10 +10,13 @@ import { Todo } from './todo';
 export class TodoService {
 
   myTodos = TODOES; // Initial data array (can also be empty)
+
   todo = new BehaviorSubject<any>(null); //Behavior subj [EMPTY] 
+  todo$ = this.todo.asObservable(); // Same subject but bet lai varetu pie to subskribēt 
+
   singleTodo = new BehaviorSubject<any>(null);
   singleTodo$ = this.singleTodo.asObservable();
-  todo$ = this.todo.asObservable(); // Same subject but bet lai varetu pie to subskribēt 
+  
 
   constructor() { }
 
@@ -25,7 +28,7 @@ export class TodoService {
     this.singleTodo.next(this.myTodos.find(t => t.id === id)!);
   }
 
- addTodo(newTodo: Todo): void{
+  addTodo(newTodo: Todo): void{
     if(this.myTodos.find(listTodo => newTodo.task === listTodo.task)) { return }
 
     this.myTodos.push(newTodo); // push into array
@@ -35,8 +38,13 @@ export class TodoService {
   deleteTodo(incomingTodoId: number): void{
     this.myTodos = this.myTodos.filter(listTodo => incomingTodoId !== listTodo.id) //
     this.todo.next(this.myTodos);
+  }
 
-
+  completeItem(index: number): void{
+    let todo = this.myTodos[index];
+    todo.done = !todo.done;
+    this.singleTodo.next(todo);
+    this.todo.next(this.myTodos);
   }
 
 }

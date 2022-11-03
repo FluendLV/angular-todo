@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Todo } from '../todo';
 import { TodoService } from '../todo.service';
 
@@ -10,11 +11,19 @@ import { TodoService } from '../todo.service';
 export class TodoListComponent implements OnInit {
 
   todoes: Todo[] = [];  // Local myTodo array
+  done: boolean = false;
+  todo?: Todo;
 
-  constructor(private todoService: TodoService) {
+
+
+  constructor(private todoService: TodoService,
+    private route: ActivatedRoute) {
     todoService.todo$.subscribe((savedTodos: Todo[]) => {
       this.todoes = savedTodos;    // todoes = todoes which already are saved 
     })
+    todoService.singleTodo$.subscribe((savedSingleTodo: Todo) => {
+      this.todo = savedSingleTodo;
+    }) 
    }
 
   ngOnInit(): void {
@@ -25,6 +34,12 @@ export class TodoListComponent implements OnInit {
     this.todoService.getTodoes();
   }  
 
+  getTodo(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.todoService.getTodo(id);
+  }
+  
+
   add(task: string, id: number): void{
     task = task.trim();
     this.todoService.addTodo({ id, task } as Todo)
@@ -32,7 +47,11 @@ export class TodoListComponent implements OnInit {
 
   delete(id: number): void{
     this.todoService.deleteTodo(id);
-    
   }
+
+  completeItem(index: number){
+    this.todoService.completeItem(index);
+  }
+  
   
 }
