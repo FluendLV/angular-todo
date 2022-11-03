@@ -11,15 +11,16 @@
 </div>
 
 <ul class="todo-active-list">
-    <li *ngFor="let todo of todoes; let i = index">
+    <li *ngFor="let todo of todoes; let i = index, let last = last" >
         <a class="task"  routerLink="/todo-editor/{{todo.id}}">
         <span class="task-number" >{{ todo.id }} </span> 
         <span [ngClass]="{'todo-complete': todo.done}">{{ todo.task }}</span> 
         </a>
     <button type="button" class="delete" title="delete task"
      (click)="delete(todo.id)">x</button>
-     <input type="checkbox" class="todo-checkbox" (click)="completeItem(i)">      
-     <button type="button" class="move-up" title="move up">&#8593;</button>
-     <button type="button" class="move-up" title="move up">&#8595;</button>
+     <input type="checkbox" class="todo-checkbox" (click)="completeItem(i)">
+    
+     <button type="button" class="move-up" title="move up" *ngIf="i != 0" (click)="moveUp(i)">&#8593;</button>
+     <button type="button" class="move-down" title="move down" *ngIf="!last"  (click)="moveDown(i)">&#8595;</button>
     </li>
 </ul>

@@ -11,7 +11,6 @@ import { TodoService } from '../todo.service';
 export class TodoListComponent implements OnInit {
 
   todoes: Todo[] = [];  // Local myTodo array
-  done: boolean = false;
   todo?: Todo;
 
 
@@ -26,13 +25,15 @@ export class TodoListComponent implements OnInit {
     }) 
    }
 
-  ngOnInit(): void {
-    this.getTodoes();
-  }
+   ngOnInit(): void {}
 
-  getTodoes() {
+ /* ngOnInit(): void {
+    this.getTodoes();
+  } */                  
+
+/*  getTodoes() {
     this.todoService.getTodoes();
-  }  
+  } */  
 
   getTodo(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -49,9 +50,18 @@ export class TodoListComponent implements OnInit {
     this.todoService.deleteTodo(id);
   }
 
-  completeItem(index: number){
+  completeItem(index: number): void{
     this.todoService.completeItem(index);
   }
+
+  moveUp(index: number): void {
+    this.todoService.moveUp(index);
+  }
+
+  moveDown(index: number): void {
+    this.todoService.moveDown(index);
+  }
+
   
   
 }
